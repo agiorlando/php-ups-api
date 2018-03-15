@@ -122,6 +122,7 @@ class EntityTest extends PHPUnit_Framework_TestCase
         'SoldTo',
         'PickupType',
         'InsuredValue',
+        'DeclaredValue',
         'InternationalForms',
         'Product',
         'COD',

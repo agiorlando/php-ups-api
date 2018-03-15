@@ -23,6 +23,11 @@ class PackageServiceOptions implements NodeInterface
     private $insuredValue;
 
     /**
+     * @var DeclaredValue
+     */
+    private $declaredValue;
+
+    /**
      * @var string
      */
     private $earliestDeliveryTime;
@@ -59,6 +64,9 @@ class PackageServiceOptions implements NodeInterface
             if (isset($parameters->InsuredValue)) {
                 $this->setInsuredValue(new InsuredValue($parameters->InsuredValue));
             }
+            if (isset($parameters->DeclaredValue)) {
+                $this->setDeclaredValue(new DeclaredValue($parameters->DeclaredValue));
+            }
             if (isset($parameters->EarliestDeliveryTime)) {
                 $this->setEarliestDeliveryTime($parameters->EarliestDeliveryTime);
             }
@@ -89,6 +97,9 @@ class PackageServiceOptions implements NodeInterface
         if ($this->getInsuredValue()) {
             $node->appendChild($this->getInsuredValue()->toNode($document));
         }
+        if ($this->getDeclaredValue()) {
+            $node->appendChild($this->getDeclaredValue()->toNode($document));
+        }
         foreach ($this->getHazMat() as $hazmat) {
             $node->appendChild($hazmat->toNode($document));
         }
@@ -116,6 +127,22 @@ class PackageServiceOptions implements NodeInterface
     public function setInsuredValue($var)
     {
         $this->insuredValue = $var;
+    }
+
+    /**
+     * @return DeclaredValue|null
+     */
+    public function getDeclaredValue()
+    {
+        return $this->declaredValue;
+    }
+
+    /**
+     * @param $var
+     */
+    public function setDeclaredValue($var)
+    {
+        $this->declaredValue = $var;
     }
 
     /**
